@@ -1,2 +1,2 @@
-# DevOps-Bitirme-devi
+# DevOps-Bitirme-Ödevi
 TBB DevOps Uzmanlık Eğitimi Bitirme Ödevi
