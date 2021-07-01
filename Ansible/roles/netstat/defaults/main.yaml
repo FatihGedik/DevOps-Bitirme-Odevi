@@ -1,0 +1,8 @@
+---
+# Fatih Gedik
+# 01.07.2021
+# Version 1.0.0
+# Ansible Playbook
+
+
+path_file: "/etc/profile"

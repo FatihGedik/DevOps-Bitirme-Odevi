@@ -1,0 +1,15 @@
+---
+# Fatih Gedik
+# 01.07.2021
+# Version 1.0.0
+# Ansible Playbook
+
+- name: get docker version
+  shell: "docker -v | cut -d ' ' -f 3 | cut -d ',' -f 1"
+  register: version
+
+- debug:
+    msg: "{{ version }}"
+         
+
+     

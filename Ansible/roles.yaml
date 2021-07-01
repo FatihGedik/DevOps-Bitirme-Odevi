@@ -1,0 +1,46 @@
+---
+# Fatih Gedik
+# 01.07.2021
+# Version 1.0.0
+# Ansible Playbook
+
+
+- name: RSYSLOG
+  hosts: rsys
+  become: yes
+  remote_user: ged2
+  roles:
+    - role: rsyslog
+  tags: rsyslog
+
+- name: NETSTAT
+  hosts: netstat
+  become: yes
+  remote_user: ged2
+  roles:
+    - role: netstat       
+  tags: netstat   
+
+- name: DockerVersion
+  hosts: dockerversion
+  become: yes
+  remote_user: ged2
+  roles:
+    - role: docker
+  tags: docker 
+
+- name: KubectlVersion
+  hosts: kubectlversion
+  become: yes
+  remote_user: ged2
+  roles:
+    - role: kubectl
+  tags: kubectl 
+
+- name: TcpDump
+  hosts: tcpdump
+  become: yes
+  remote_user: ged2
+  roles: 
+    - role: tcpdump
+  tags: tcpdump  
