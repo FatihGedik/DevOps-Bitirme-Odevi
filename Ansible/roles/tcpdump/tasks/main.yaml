@@ -5,10 +5,5 @@
 # Ansible Playbook
 
 
-- name: Install tcpdump
-  apt:
-    name: tcpdump
-    update_cache: yes
-  notify: tcpdump_restart
-
-
+- include_tasks: tcp.yaml
+  when: ansible_os_family == "Debian"

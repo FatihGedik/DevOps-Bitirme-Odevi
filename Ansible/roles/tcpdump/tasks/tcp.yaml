@@ -1,0 +1,15 @@
+---
+# Fatih Gedik
+# 01.07.2021
+# Version 1.0.0
+# Ansible Playbook
+
+
+- name: Install tcpdump
+  apt:
+    name: tcpdump
+    state: latest
+  notify: 
+    - tcpdump_restart
+
+
