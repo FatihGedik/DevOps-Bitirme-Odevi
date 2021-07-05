@@ -7,5 +7,11 @@ WORKDIR /app
 COPY requirements.txt /app
 RUN pip install -r requirements.txt
 
+ENV MYSQL_USERNAME="root"
+ENV MYSQL_ROOT_PASSWORD="admin123"
+ENV MYSQL_INSTANCE_NAME="sehirler"
+ENV MYSQL_PORT_3306_TCP_ADDR="mydb"
+ENV MYSQL_PORT_3306_TCP_PORT=3306
+
 COPY app.py /app
 CMD python app.py
