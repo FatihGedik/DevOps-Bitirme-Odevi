@@ -12,7 +12,7 @@ def buyuk_sehirler() -> List[Dict]:
         
     connection = mysql.connector.connect(
         user = os.getenv('MYSQL_USERNAME'),
-        password = os.getenv('MYSQL_ROOT_PASSWORD'),
+        password = os.getenv('MYSQL_PASSWORD'),
         host = os.getenv('MYSQL_PORT_3306_TCP_ADDR'),
         port = os.getenv('MYSQL_PORT_3306_TCP_PORT'),
         database = os.getenv('MYSQL_INSTANCE_NAME')       
