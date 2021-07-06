@@ -19,19 +19,19 @@ spec:
       - name: mysql
         image: mysql
         env:
-        - name: MYSQL_PASSWORD
+        - name: MYSQL_ROOT_PASSWORD
           valueFrom:
             secretKeyRef:
               name: mysql-secrets
-              key: MYSQL_PASSWORD
+              key: MYSQL_ROOT_PASSWORD
         - name: MYSQL_INSTANCE_NAME
           value: sehirler
         ports:
         - containerPort: 3306
         volumeMounts:
-        - name: mysql-pv-dev-volume
+        - name: mysql-pv-dev
           mountPath: /var/lib/mysql
       volumes:
-      - name: mysql-pv-dev-volume
+      - name: mysql-pv-dev
         persistentVolumeClaim:
-          claimName: mysql-pv-dev-claim
+          claimName: mysql-pvc-dev

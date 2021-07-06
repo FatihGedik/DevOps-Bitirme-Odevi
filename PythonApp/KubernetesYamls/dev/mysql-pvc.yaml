@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mysql-pv-dev-claim
+  name: mysql-pvc-dev
   namespace: dev
 spec:
   storageClassName: manual-dev

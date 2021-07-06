@@ -8,9 +8,10 @@ metadata:
 spec:
   ports:
   - port: 3306
+    targetPort: 3306
     protocol: TCP
     name: mydb
-    nodePort: 30550
+    nodePort: 30100
   selector:
     app: mydb
   type: NodePort
