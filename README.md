@@ -7,3 +7,4 @@ kubectl apply -f / (deploy çalıştırma sırası)
 
 
 weqeqqweqeqeq
+asdasdasdassd
