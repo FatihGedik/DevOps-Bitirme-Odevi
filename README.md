@@ -5,11 +5,11 @@ TBB DevOps Uzmanlık Eğitimi Bitirme Ödevi
 
 Bu proje Türkiye Bankalar Birliği'nin düzenlemiş olduğu 42 gün süre boyunca Bilge Adam tarafından verilen DevOps Eğitim Programı bitirme projesidir.
 
-# 1. APP.PY uygulamasının dockerize edilme komutları aşağıdaki gibidir:
+# 1. APP.PY uygulamasının dockerize edilme komutları aşağıda ki gibidir:
   ![image](https://user-images.githubusercontent.com/45772336/124910905-d1372b00-dff4-11eb-82a5-4bb0e4ca6733.png)
 
 
-# 2. Yapılan uygulamanın Deployment klasörleri aşağadaki gibidir: 
+# 2. Yapılan uygulamanın Deployment klasörleri aşağıda ki gibidir: 
 
 kubectl apply -f / 
 
