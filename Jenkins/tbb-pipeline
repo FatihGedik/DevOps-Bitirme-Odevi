@@ -1,0 +1,73 @@
+#!/usr/bin/env groovy
+
+node {
+    stage("Git Clone"){
+    git credentialsId: 'GITHUB',url:'https://github.com/FatihGedik/DevOps-Bitirme-Odevi.git'
+    }
+
+    stage("Kubernetes DEV Deployment"){
+
+    script {
+        env.DOCKER_BUILD_NUMBER=Jenkins.instance.getItem("buildjob").lastSuccessfulBuild.number
+    }
+    
+    sh 'echo ${DOCKER_BUILD_NUMBER}'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/dev/mysql-pv.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/dev/mysql-pvc.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/dev/mysql-secret.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/dev/mysql-deploy.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/dev/mysql-service.yaml'
+    sh 'envsubst < ./PythonApp/KubernetesYamls/dev/app-deployment.yaml | kubectl apply -f -'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/dev/app-service.yaml'
+        
+        
+}
+    stage("Kubernetes Test Deployment"){
+        
+      def deployment = input(message:'Test Deploy ?',ok:'ok',parameters:[booleanParam(defaultValue:true,description:'',name:'Yes')])
+      
+      if(deployment == true){
+          
+    script {
+        env.DOCKER_BUILD_NUMBER=Jenkins.instance.getItem("buildjob").lastSuccessfulBuild.number
+    }
+    
+    sh 'echo ${DOCKER_BUILD_NUMBER}'
+        sh 'echo ${DOCKER_BUILD_NUMBER}'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/test/mysql-pv.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/test/mysql-pvc.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/test/mysql-secret.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/test/mysql-deploy.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/test/mysql-service.yaml'
+    sh 'envsubst < ./PythonApp/KubernetesYamls/test/app-deployment.yaml | kubectl apply -f -'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/test/app-service.yaml'
+    
+      } else {
+          echo "Deploy Skipped"
+      }
+}
+
+    stage("Kubernetes Prod Deployment"){
+        
+      def deployment = input(message:'Prod Deploy ?',ok:'ok',parameters:[booleanParam(defaultValue:true,description:'',name:'Yes')])
+      
+      if(deployment == true){
+          
+    script {
+        env.DOCKER_BUILD_NUMBER=Jenkins.instance.getItem("buildjob").lastSuccessfulBuild.number
+    }
+    
+    sh 'echo ${DOCKER_BUILD_NUMBER}'
+       sh 'echo ${DOCKER_BUILD_NUMBER}'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/prod/mysql-pv.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/prod/mysql-pvc.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/prod/mysql-secret.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/prod/mysql-deploy.yaml'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/prod/mysql-service.yaml'
+    sh 'envsubst < ./PythonApp/KubernetesYamls/prod/app-deployment.yaml | kubectl apply -f -'
+    sh 'kubectl apply -f ./PythonApp/KubernetesYamls/prod/app-service.yaml'
+      } else {
+          echo "Deploy Skipped"
+      }
+}
+}
