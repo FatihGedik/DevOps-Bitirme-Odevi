@@ -19,7 +19,7 @@ spec:
     spec:
       containers:
         - name: tbbpython
-          image: foti06/tbb-bitirme:v$DOCKER_BUILD_NUMBER
+          image: foti06/tbb-bitirme:tbb-python
           ports:
             - containerPort: 5001
           env:
@@ -29,7 +29,7 @@ spec:
                 name: mysql-secrets
                 key: MYSQL_ROOT_PASSWORD
           - name: MYSQL_INSTANCE_NAME
-            value: "sehirler"
+            value: "ulkeler"
           - name: MYSQL_PORT_3306_TCP_ADDR
             value: "mydb" 
           - name: MYSQL_PORT_3306_TCP_PORT

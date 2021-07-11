@@ -8,7 +8,7 @@ import os
 app = Flask(__name__)
 
 
-def buyuk_sehirler() -> List[Dict]:
+def ulke_baskentleri() -> List[Dict]:
         
     connection = mysql.connector.connect(
         user = os.getenv('MYSQL_USERNAME'),
@@ -18,7 +18,7 @@ def buyuk_sehirler() -> List[Dict]:
         database = os.getenv('MYSQL_INSTANCE_NAME')       
     )    
     cursor = connection.cursor()
-    cursor.execute('SELECT * FROM buyuk_sehirler')
+    cursor.execute('SELECT * FROM ulke_baskentleri')
     results = cursor.fetchall()
     cursor.close()
     connection.close()
@@ -34,7 +34,7 @@ healtcheck = {
 }
 @app.route('/')
 def index() -> str:
-    return json.dumps({'buyuk_sehirler': buyuk_sehirler()})
+    return json.dumps({'Ulke Baskentleri': ulke_baskentleri()})
 
 @app.route('/healtcheck')
 def run2():
