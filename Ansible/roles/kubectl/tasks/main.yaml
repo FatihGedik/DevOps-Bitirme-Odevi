@@ -5,7 +5,7 @@
 # Ansible Playbook
 
 
-- name: get docker version
+- name: get kubectl version
   shell: "kubectl version "
   register: version
 

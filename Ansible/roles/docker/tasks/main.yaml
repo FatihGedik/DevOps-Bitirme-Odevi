@@ -5,7 +5,7 @@
 # Ansible Playbook
 
 - name: get docker version
-  shell: "docker -v | cut -d ' ' -f 3 | cut -d ',' -f 1"
+  shell: "docker -v"
   register: version
 
 - debug:
